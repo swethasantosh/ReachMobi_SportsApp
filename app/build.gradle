@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
@@ -21,7 +22,7 @@ android {
     }
 
     //to use java 1.8 version features(such as lambda expressions)
-    compileOptions{
+    compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -48,6 +49,7 @@ dependencies {
     implementation "com.android.support:design:$supportVersion"
     implementation "android.arch.lifecycle:extensions:$lifecycleExtensionVersion"
     implementation "com.jakewharton:butterknife:$butterknifeVersion"
+    implementation 'com.google.firebase:firebase-analytics:17.4.2'
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
 
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
@@ -72,7 +74,6 @@ dependencies {
 //Glide
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
-
 
 
     testImplementation 'junit:junit:4.12'

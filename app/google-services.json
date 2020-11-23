@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "661119298005",
+    "firebase_url": "https://sports-reachmobi.firebaseio.com",
+    "project_id": "sports-reachmobi",
+    "storage_bucket": "sports-reachmobi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661119298005:android:72c1b640149634824ef55c",
+        "android_client_info": {
+          "package_name": "com.example.sports_reachmobi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "661119298005-e2coa620lmgbnub1l1lmvujl21k6ncm1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYTIqMMGCJRsFg5zbA1bSCOqwlFEVArwE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "661119298005-e2coa620lmgbnub1l1lmvujl21k6ncm1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

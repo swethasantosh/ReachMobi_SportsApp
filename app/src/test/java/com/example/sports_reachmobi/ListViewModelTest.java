@@ -72,9 +72,6 @@ public class ListViewModelTest
 
     }
 
-
-
-
     @Before
     public void setupRxSchedulers()
     {
