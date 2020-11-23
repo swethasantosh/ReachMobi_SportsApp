@@ -1,7 +1,11 @@
 package com.example.sports_reachmobi.viewmodel;
 
+import com.example.sports_reachmobi.DI.DaggerApiComponent;
 import com.example.sports_reachmobi.model.SportsService;
 import com.example.sports_reachmobi.model.Sports_List;
+
+import javax.inject.Inject;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -16,8 +20,17 @@ public class SportsListViewModel extends ViewModel
     public MutableLiveData<Boolean> sportLoadError = new MutableLiveData<Boolean>();
     public MutableLiveData<Boolean> loading = new MutableLiveData<Boolean>();
 
-    private SportsService sportsService = SportsService.getInstance();
+    //private SportsService sportsService = SportsService.getInstance();
+    @Inject
+    public SportsService sportsService;
     private CompositeDisposable disposable = new CompositeDisposable();
+
+    public SportsListViewModel()
+    {
+        super();
+        DaggerApiComponent.create().inject(this);
+
+    }
 
     //entry point
     public void refresh()
@@ -31,7 +44,7 @@ public class SportsListViewModel extends ViewModel
 
         //to avoid main thread blocking for response
         disposable.add(sportsService.getSports()
-        .subscribeOn(Schedulers.newThread())
+        .subscribeOn(Schedulers.newThread())//creates a new thread in the background
         .observeOn(AndroidSchedulers.mainThread())
                     .subscribeWith(new DisposableSingleObserver<Sports_List>() {
 

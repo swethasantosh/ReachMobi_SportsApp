@@ -71,10 +71,10 @@ public class SportListAdapter extends RecyclerView.Adapter<SportListAdapter.Spor
         {
             sportName.setText(sport_model.getSportName());
             sportFormat.setText(sport_model.getSportFormat());
-
-            Glide.with(holder.itemView.getContext())
+            /*Glide.with(holder.itemView.getContext())
                     .load(sport_model.getSportThumb())
-                    .into(sportImage);
+                    .into(sportImage);*/
+            Util.loadImage(sportImage, sport_model.getSportThumb(), Util.getProgressDrawable(sportImage.getContext()));
 
         }
 

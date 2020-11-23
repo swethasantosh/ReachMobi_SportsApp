@@ -45,6 +45,13 @@ public class MainActivity extends AppCompatActivity
 
         sportsList.setLayoutManager(new LinearLayoutManager(this));
         sportsList.setAdapter(adapter);
+
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            viewModel.refresh();
+            swipeRefreshLayout.setRefreshing(false);
+
+        });
+
         observerViewModel();
     }
     private void observerViewModel()
