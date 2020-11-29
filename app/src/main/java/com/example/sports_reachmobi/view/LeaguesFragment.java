@@ -56,14 +56,12 @@ public class LeaguesFragment extends Fragment
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Toast.makeText(getContext(),"meassage",Toast.LENGTH_LONG).show();
 
         //ButterKnife.bind((Activity) getContext());
         leaguesList = mView.findViewById(R.id.id_leaguesRecyclerView);
 
         mViewModel = ViewModelProviders.of(this).get(LeaguesViewModel.class);
         mViewModel.refresh();
-        //mViewModel.SearchId("4328");
 
         leaguesList.setLayoutManager(new LinearLayoutManager(context));
         leaguesList.setAdapter(adapter);

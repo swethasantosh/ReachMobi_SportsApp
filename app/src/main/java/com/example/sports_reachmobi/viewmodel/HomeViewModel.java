@@ -93,46 +93,6 @@ public class HomeViewModel extends ViewModel
     }
 
 
-
-  /*  private void searchSports(String serachId)
-    {
-        //loading spinner
-        loading.setValue(true);
-
-        //to avoid main thread blocking for response
-        //disposable.add(sportsService.getSports()
-        //String id = "4331";
-        disposable.add(sportsService.getSportsId(serachId)
-
-                .subscribeOn(Schedulers.newThread())//creates a new thread in the background
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableSingleObserver<Sports_List>() {
-
-                    @Override
-                    public void onSuccess(Sports_List sportsModels)
-
-                    {
-                        sports.setValue(sportsModels);
-
-                        sportLoadError.setValue(false);
-                        loading.setValue(false);
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e)
-                    {
-                        sportLoadError.setValue(true);
-                        loading.setValue(false);
-                        e.printStackTrace();
-
-                    }
-                }));
-//
-
-    }*/
-
-
   public void itemClick(Sports_Item_Model sports_item_model)
   {
       navigator.onItemClick(sports_item_model );

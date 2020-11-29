@@ -102,7 +102,7 @@ public class HomeFragment extends Fragment implements HomeNavigator
 
 
 
-        mViewModel.setNavigator(this );
+        mViewModel.setNavigator(this);
 
 
 
@@ -164,22 +164,12 @@ public class HomeFragment extends Fragment implements HomeNavigator
         MenuItem item = menu.findItem(R.id.id_search);
         SearchView searchView = (SearchView) item.getActionView();
 
-        // SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
-        // if (item != null) {
-        //    searchView = (SearchView) item.getActionView();
-        //}
-        //if (searchView != null)
-        //{
-        //searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
-
-        // queryTextListener = new SearchView.OnQueryTextListener() {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
         {
             @Override
             public boolean onQueryTextSubmit(String query)
             {
-                //searchViewModel.SearchId(query);
-                //return false;
+
                 return true;
             }
 
@@ -194,9 +184,7 @@ public class HomeFragment extends Fragment implements HomeNavigator
                 return true;
             }
         });
-        //searchView.setOnQueryTextListener(queryTextListener);
 
-        //}
         super.onCreateOptionsMenu(menu, inflater);
 
 

@@ -2,7 +2,6 @@
 
 
 
-<!--
 <layout>
     <data>
         <variable
@@ -12,11 +11,10 @@
             name="mViewModel"
             type="com.example.sports_reachmobi.viewmodel.HomeViewModel" />
     </data>
--->
-
 
 
 <LinearLayout    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:onClick="@{()->mViewModel.itemClick(sports_item_model)}"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -24,10 +22,6 @@
     android:focusable="true"
     android:background="?attr/selectableItemBackground"
     >
-
-<!--
-    android:onClick="@{()->mViewModel.itemClick(sports_item_model)}"
--->
 
     <ImageView
         android:id="@+id/sport_thumb"
@@ -58,8 +52,5 @@
     </LinearLayout>
 </LinearLayout>
 
-
-
-<!--
 </layout>
--->
+

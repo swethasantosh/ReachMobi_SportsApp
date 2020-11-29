@@ -31,7 +31,7 @@ public class SportListAdapter extends RecyclerView.Adapter<SportListAdapter.Spor
 
 
 
-    //public ArrayList<Sports_Item_Model> filteredlist = new ArrayList<>();
+    //public ArrayList<Sports_Item_Model> unfilteredlist = new ArrayList<>();
 
     public ArrayList<Sports_Item_Model> unfilteredlist;
 
@@ -90,7 +90,10 @@ public class SportListAdapter extends RecyclerView.Adapter<SportListAdapter.Spor
 
 
         holder.bind(sport_item.get(position),holder);
-       // holder.bind(filteredlist.get(position),holder);
+
+        //holder.bind(unfilteredlist.get(position),holder);
+
+        // holder.bind(filteredlist.get(position),holder);
 
 
 
@@ -107,7 +110,7 @@ public class SportListAdapter extends RecyclerView.Adapter<SportListAdapter.Spor
         return sport_item.size();
 
 
-        //return filteredlist.size();
+        //return unfilteredlist.size();
 
     }
 
@@ -118,11 +121,6 @@ public class SportListAdapter extends RecyclerView.Adapter<SportListAdapter.Spor
     @Override
     public Filter getFilter()
     {
-       /* if(customFilter == null)
-        {
-            customFilter = new CustomFilter();
-        }*/
-        //return null;
         return  customFilter;
     }
 
@@ -134,8 +132,6 @@ public class SportListAdapter extends RecyclerView.Adapter<SportListAdapter.Spor
         protected FilterResults performFiltering(CharSequence charSequence)
         {
             FilterResults filterResults = new FilterResults();
-            //ArrayList<Sports_Item_Model> newList = sport_item;
-            //ArrayList<Sports_Item_Model> newList = filteredlist;
 
             ArrayList<Sports_Item_Model> resultList = new ArrayList<>();
 
@@ -146,26 +142,20 @@ public class SportListAdapter extends RecyclerView.Adapter<SportListAdapter.Spor
             if (searchString.isEmpty())
             {
                 resultList.addAll(unfilteredlist);//backup
-                //updateSports(sport_item);
+                //updateSports(unfilteredlist);
                 Log.d("unfilteredlist", unfilteredlist + "values");
 
             }
             else {
 
-
-                //for (int i = 0; i < newList.size(); i++)
                 for(Sports_Item_Model model : unfilteredlist)
+                //for(Sports_Item_Model model : sport_item)
+
                 {
                     if(model.getSportName().toLowerCase().contains(searchString))
                     {
                         resultList.add(model);
                     }
-                    //Sports_Item_Model filtered_sport = newList.get(i);
-                   /* String sportText = filtered_sport.getSportName();
-                    if (sportText.toLowerCase().contains(searchString))
-                    {
-                        resultList.add(filtered_sport);
-                    }*/
 
                 }
 
@@ -187,6 +177,7 @@ public class SportListAdapter extends RecyclerView.Adapter<SportListAdapter.Spor
             //notifyDataSetChanged();
            // updateSports(filteredlist);
             updateSports((ArrayList<Sports_Item_Model>) filterResults.values);
+
 
 
         }
@@ -220,11 +211,7 @@ public class SportListAdapter extends RecyclerView.Adapter<SportListAdapter.Spor
         {
             sportName.setText(sport_model.getSportName());
             sportFormat.setText(sport_model.getSportFormat());
-            //sportFormat.setText(sport_model.getSportId());
 
-            /*Glide.with(holder.itemView.getContext())
-                    .load(sport_model.getSportThumb())
-                    .into(sportImage);*/
             Util.loadImage(sportImage, sport_model.getSportThumb(), Util.getProgressDrawable(sportImage.getContext()));
 
         }
