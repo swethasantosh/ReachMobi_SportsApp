@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
@@ -27,11 +28,17 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.sports_reachmobi.R;
+import com.example.sports_reachmobi.model.HomeNavigator;
+import com.example.sports_reachmobi.model.Sports_Item_Model;
 import com.example.sports_reachmobi.viewmodel.HomeViewModel;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment {
+//public class HomeFragment extends Fragment {
+
+public class HomeFragment extends Fragment implements HomeNavigator
+{
+
 
 
     Context context;
@@ -45,7 +52,10 @@ public class HomeFragment extends Fragment {
     RecyclerView sportList;
 
     private HomeViewModel mViewModel;
+
+
     private SportListAdapter adapter = new SportListAdapter(new ArrayList<>());
+
 
 
     private SearchView searchView = null;
@@ -84,12 +94,18 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Toast.makeText(getContext(), "meassage", Toast.LENGTH_LONG).show();
 
         //ButterKnife.bind((Activity) getContext());
         sportList = mView.findViewById(R.id.id_homeRecyclerView);
 
         mViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
+
+
+
+        mViewModel.setNavigator(this );
+
+
+
         mViewModel.refresh();
         //mViewModel.SearchId("4328");
 
@@ -171,7 +187,7 @@ public class HomeFragment extends Fragment {
             public boolean onQueryTextChange(String newText)
             {
 
-                //adapter.getFilter().filter(newText);
+                adapter.getFilter().filter(newText);
 
 
 
@@ -186,4 +202,10 @@ public class HomeFragment extends Fragment {
 
     }
 
+    @Override
+    public void onItemClick(Sports_Item_Model sports_item_model)
+    {
+        new AlertDialog.Builder(getContext()).setMessage(sports_item_model.getSportName()).show();
+
+    }
 }

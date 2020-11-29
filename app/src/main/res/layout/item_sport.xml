@@ -1,9 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
+
+<!--
+<layout>
+    <data>
+        <variable
+            name="sports_item_model"
+            type="com.example.sports_reachmobi.model.Sports_Item_Model" />
+        <variable
+            name="mViewModel"
+            type="com.example.sports_reachmobi.viewmodel.HomeViewModel" />
+    </data>
+-->
+
+
+
 <LinearLayout    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="?attr/selectableItemBackground"
     >
+
+<!--
+    android:onClick="@{()->mViewModel.itemClick(sports_item_model)}"
+-->
+
     <ImageView
         android:id="@+id/sport_thumb"
         android:layout_width="match_parent"
@@ -32,3 +57,9 @@
         android:text="Sport Format"/>
     </LinearLayout>
 </LinearLayout>
+
+
+
+<!--
+</layout>
+-->

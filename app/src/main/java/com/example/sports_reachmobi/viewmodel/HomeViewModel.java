@@ -1,7 +1,9 @@
 package com.example.sports_reachmobi.viewmodel;
 
 import com.example.sports_reachmobi.DI.DaggerApiComponent;
+import com.example.sports_reachmobi.model.HomeNavigator;
 import com.example.sports_reachmobi.model.SportsService;
+import com.example.sports_reachmobi.model.Sports_Item_Model;
 import com.example.sports_reachmobi.model.Sports_List;
 
 import javax.inject.Inject;
@@ -15,6 +17,17 @@ import io.reactivex.schedulers.Schedulers;
 
 public class HomeViewModel extends ViewModel
 {
+
+
+    private HomeNavigator navigator;
+
+    public void setNavigator(HomeNavigator navigator)
+    {
+        this.navigator = navigator;
+    }
+
+
+
     //observer design pattern- live data is object that generates data asynchronously :observable
     public MutableLiveData<Sports_List> sports = new MutableLiveData<Sports_List>();
     //public MutableLiveData<Boolean> sportLoadError = new MutableLiveData<Boolean>();
@@ -118,6 +131,13 @@ public class HomeViewModel extends ViewModel
 //
 
     }*/
+
+
+  public void itemClick(Sports_Item_Model sports_item_model)
+  {
+      navigator.onItemClick(sports_item_model );
+
+  }
 
 
 

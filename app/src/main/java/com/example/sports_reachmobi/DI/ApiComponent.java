@@ -14,7 +14,6 @@ import dagger.Component;
 public interface ApiComponent
 {
     void inject(SportsService service);
-    //void inject(SportsListViewModel listViewModel);
     void inject(HomeViewModel listViewModel);
 
 

@@ -1,5 +1,6 @@
 package com.example.sports_reachmobi.view;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -12,8 +13,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -31,10 +36,17 @@ public class EventsFragment extends Fragment
     Context context;
     public View mView;
     FragmentActivity listener;
-    //@BindView(R.id.id_homeRecyclerView)
-    // RecyclerView sportsList;
+   // @BindView(R.id.id_homeRecyclerView)
+     //RecyclerView sportsList;
     @BindView(R.id.id_eventsLayout)
     LinearLayout linearLayout;
+
+
+
+    private SearchView searchView = null;
+    private SearchView.OnQueryTextListener queryTextListener;
+
+
 
     RecyclerView eventsList;
 
@@ -48,6 +60,15 @@ public class EventsFragment extends Fragment
         return new EventsFragment();
     }
 
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -58,14 +79,12 @@ public class EventsFragment extends Fragment
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Toast.makeText(getContext(),"meassage",Toast.LENGTH_LONG).show();
 
-        //ButterKnife.bind((Activity) getContext());
+       // ButterKnife.bind((Activity) getContext());
         eventsList = mView.findViewById(R.id.id_eventsRecyclerView);
 
         mViewModel = ViewModelProviders.of(this).get(EventsViewModel.class);
         mViewModel.refresh();
-        //mViewModel.SearchId("4328");
 
         eventsList.setLayoutManager(new LinearLayoutManager(context));
         eventsList.setAdapter(adapter);
@@ -79,6 +98,44 @@ public class EventsFragment extends Fragment
         super.onStart();
 
     }
+
+
+
+
+
+
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater)
+    {
+        inflater.inflate(R.menu.search_menu, menu);
+        MenuItem item = menu.findItem(R.id.id_search);
+        SearchView searchView = (SearchView) item.getActionView();
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener()
+        {
+            @Override
+            public boolean onQueryTextSubmit(String query)
+            {
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText)
+            {
+
+                adapter.getFilter().filter(newText);
+
+                return true;
+            }
+        });
+
+        super.onCreateOptionsMenu(menu, inflater);
+
+
+    }
+
 
     private void observerViewModel()
     {

@@ -18,7 +18,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class ApiModule
 {
-    //private static final String BASE_URL = "https://www.thesportsdb.com";
     private static final String BASE_URL = "https://www.thesportsdb.com";
 
     @Provides

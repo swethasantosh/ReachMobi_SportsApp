@@ -7,7 +7,7 @@
         app:showAsAction="always"
         app:actionViewClass="androidx.appcompat.widget.SearchView" />
 
-    <item android:id="@+id/id_allSports"
+  <!--  <item android:id="@+id/id_allSports"
         android:title="Sports"
         android:icon="@drawable/ic_calendar"/>
 
@@ -15,6 +15,6 @@
     <item android:id="@+id/id_event_schedule"
         android:title="Sports"
         android:icon="@drawable/ic_sports"/>
-
+-->
 
 </menu>
