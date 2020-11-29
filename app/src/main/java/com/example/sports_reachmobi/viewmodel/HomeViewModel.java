@@ -1,4 +1,3 @@
-/*
 package com.example.sports_reachmobi.viewmodel;
 
 import com.example.sports_reachmobi.DI.DaggerApiComponent;
@@ -14,21 +13,22 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 
-public class SportsListViewModel extends ViewModel
+public class HomeViewModel extends ViewModel
 {
     //observer design pattern- live data is object that generates data asynchronously :observable
     public MutableLiveData<Sports_List> sports = new MutableLiveData<Sports_List>();
-    public MutableLiveData<Boolean> sportLoadError = new MutableLiveData<Boolean>();
-    public MutableLiveData<Boolean> loading = new MutableLiveData<Boolean>();
+    //public MutableLiveData<Boolean> sportLoadError = new MutableLiveData<Boolean>();
+   // public MutableLiveData<Boolean> loading = new MutableLiveData<Boolean>();
 
     //private SportsService sportsService = SportsService.getInstance();
     @Inject
     public SportsService sportsService;
     private CompositeDisposable disposable = new CompositeDisposable();
 
-    public SportsListViewModel()
+    public HomeViewModel()
     {
         super();
+        //DaggerApiComponent.create().inject(this);
         DaggerApiComponent.create().inject(this);
 
     }
@@ -38,58 +38,58 @@ public class SportsListViewModel extends ViewModel
     {
         fetchSports();
     }
-    public void SearchId(String searchId){
-        searchSports(searchId);
-    }
+    /* public void SearchId(String searchId){
+         searchSports(searchId);
+     }*/
     private void fetchSports()
     {
         //loading spinner
-        loading.setValue(true);
+        //loading.setValue(true);
 
         //to avoid main thread blocking for response
         disposable.add(sportsService.getSports()
-        //String id = "4331";
-        //disposable.add(sportsService.getSportsId(id)
+                //String id = "4331";
+                //disposable.add(sportsService.getSportsId(id)
 
                 .subscribeOn(Schedulers.newThread())//creates a new thread in the background
-        .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeWith(new DisposableSingleObserver<Sports_List>() {
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver<Sports_List>() {
 
-        @Override
-        public void onSuccess(Sports_List sportsModels)
+                    @Override
+                    public void onSuccess(Sports_List sportsModels)
 
-        {
-            sports.setValue(sportsModels);
+                    {
+                        sports.setValue(sportsModels);
 
-            sportLoadError.setValue(false);
-                loading.setValue(false);
+                       // sportLoadError.setValue(false);
+                        //loading.setValue(false);
 
-            }
+                    }
 
-            @Override
-            public void onError(Throwable e)
-            {
-                sportLoadError.setValue(true);
-                loading.setValue(false);
-                e.printStackTrace();
+                    @Override
+                    public void onError(Throwable e)
+                    {
+                        //sportLoadError.setValue(true);
+                        //loading.setValue(false);
+                        e.printStackTrace();
 
-            }
-        }));
+                    }
+                }));
 //
 
     }
 
 
 
-    private void searchSports(String serachId)
+  /*  private void searchSports(String serachId)
     {
         //loading spinner
         loading.setValue(true);
 
         //to avoid main thread blocking for response
         //disposable.add(sportsService.getSports()
-                //String id = "4331";
-                disposable.add(sportsService.getSportsId(serachId)
+        //String id = "4331";
+        disposable.add(sportsService.getSportsId(serachId)
 
                 .subscribeOn(Schedulers.newThread())//creates a new thread in the background
                 .observeOn(AndroidSchedulers.mainThread())
@@ -117,9 +117,7 @@ public class SportsListViewModel extends ViewModel
                 }));
 //
 
-    }
-
-
+    }*/
 
 
 
@@ -129,4 +127,3 @@ public class SportsListViewModel extends ViewModel
         disposable.clear();
     }
 }
-*/

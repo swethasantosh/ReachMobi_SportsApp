@@ -29,4 +29,31 @@ public class Sports_Item_Model
     public String getSportThumb() {
         return sportThumb;
     }
+
+   /* @SerializedName("strSport")
+    String sportName;
+
+    @SerializedName("idLeague")
+    String sportId;
+
+    @SerializedName("strLogo")
+    String sportThumb;
+
+    public Sports_Item_Model(String sportName, String sportId, String sportThumb) {
+        this.sportName = sportName;
+        this.sportId = sportId;
+        this.sportThumb = sportThumb;
+    }
+
+    public String getSportName() {
+        return sportName;
+    }
+
+    public String getSportId() {
+        return sportId;
+    }
+
+    public String getSportThumb() {
+        return sportThumb;
+    }*/
 }

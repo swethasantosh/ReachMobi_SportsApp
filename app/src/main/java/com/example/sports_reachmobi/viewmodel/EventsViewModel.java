@@ -1,9 +1,9 @@
-/*
 package com.example.sports_reachmobi.viewmodel;
 
+
 import com.example.sports_reachmobi.DI.DaggerApiComponent;
-import com.example.sports_reachmobi.model.SportsService;
-import com.example.sports_reachmobi.model.Sports_List;
+import com.example.sports_reachmobi.model.EventsService;
+import com.example.sports_reachmobi.model.Events_List;
 
 import javax.inject.Inject;
 
@@ -14,21 +14,23 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
 
-public class SportsListViewModel extends ViewModel
-{
+public class EventsViewModel extends ViewModel {
     //observer design pattern- live data is object that generates data asynchronously :observable
-    public MutableLiveData<Sports_List> sports = new MutableLiveData<Sports_List>();
-    public MutableLiveData<Boolean> sportLoadError = new MutableLiveData<Boolean>();
-    public MutableLiveData<Boolean> loading = new MutableLiveData<Boolean>();
+    public MutableLiveData<Events_List> events = new MutableLiveData<Events_List>();
 
-    //private SportsService sportsService = SportsService.getInstance();
+
+     public MutableLiveData<Boolean> sportLoadError = new MutableLiveData<Boolean>();
+     public MutableLiveData<Boolean> loading = new MutableLiveData<Boolean>();
+
+    //private EventsService eventsService = EventsService.getInstance();
     @Inject
-    public SportsService sportsService;
+    public EventsService eventsService;
     private CompositeDisposable disposable = new CompositeDisposable();
 
-    public SportsListViewModel()
+    public EventsViewModel()
     {
         super();
+        //DaggerApiComponent.create().inject(this);
         DaggerApiComponent.create().inject(this);
 
     }
@@ -36,60 +38,61 @@ public class SportsListViewModel extends ViewModel
     //entry point
     public void refresh()
     {
-        fetchSports();
+        fetchEvents();
     }
-    public void SearchId(String searchId){
+    /*public void SearchId(String searchId){
         searchSports(searchId);
-    }
-    private void fetchSports()
+    }*/
+    private void fetchEvents()
     {
         //loading spinner
-        loading.setValue(true);
+        // loading.setValue(true);
 
         //to avoid main thread blocking for response
-        disposable.add(sportsService.getSports()
-        //String id = "4331";
-        //disposable.add(sportsService.getSportsId(id)
+        disposable.add(eventsService.getEvents()
+                //String id = "4331";
+                //disposable.add(sportsService.getSportsId(id)
 
                 .subscribeOn(Schedulers.newThread())//creates a new thread in the background
-        .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeWith(new DisposableSingleObserver<Sports_List>() {
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new DisposableSingleObserver<Events_List>() {
 
-        @Override
-        public void onSuccess(Sports_List sportsModels)
 
-        {
-            sports.setValue(sportsModels);
+                    @Override
+                    public void onSuccess(Events_List eventsModels)
 
-            sportLoadError.setValue(false);
-                loading.setValue(false);
+                    {
+                        events.setValue(eventsModels);
 
-            }
+                         sportLoadError.setValue(false);
+                        loading.setValue(false);
 
-            @Override
-            public void onError(Throwable e)
-            {
-                sportLoadError.setValue(true);
-                loading.setValue(false);
-                e.printStackTrace();
+                    }
 
-            }
-        }));
+                    @Override
+                    public void onError(Throwable e)
+                    {
+                         sportLoadError.setValue(true);
+                         loading.setValue(false);
+                        e.printStackTrace();
+
+                    }
+                }));
 //
 
     }
 
 
 
-    private void searchSports(String serachId)
+  /*  private void searchSports(String serachId)
     {
         //loading spinner
         loading.setValue(true);
 
         //to avoid main thread blocking for response
         //disposable.add(sportsService.getSports()
-                //String id = "4331";
-                disposable.add(sportsService.getSportsId(serachId)
+        //String id = "4331";
+        disposable.add(eventsService.getSportsId(serachId)
 
                 .subscribeOn(Schedulers.newThread())//creates a new thread in the background
                 .observeOn(AndroidSchedulers.mainThread())
@@ -118,8 +121,7 @@ public class SportsListViewModel extends ViewModel
 //
 
     }
-
-
+*/
 
 
 
@@ -129,4 +131,3 @@ public class SportsListViewModel extends ViewModel
         disposable.clear();
     }
 }
-*/

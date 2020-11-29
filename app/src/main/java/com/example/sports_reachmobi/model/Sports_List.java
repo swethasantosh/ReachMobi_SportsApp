@@ -7,9 +7,15 @@ import java.util.ArrayList;
 public class Sports_List
 {
     @SerializedName("sports")
+    //@SerializedName("leagues")
     public ArrayList<Sports_Item_Model> sportsList;
 
     public ArrayList<Sports_Item_Model> getSportsList() {
         return sportsList;
     }
+
+
+
+
+
 }
