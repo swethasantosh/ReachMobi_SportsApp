@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity
    Fragment selectedFragment;
 
 
-    private SportListAdapter adapter = new SportListAdapter(new ArrayList<>());
+    //private SportListAdapter adapter = new SportListAdapter(new ArrayList<>());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

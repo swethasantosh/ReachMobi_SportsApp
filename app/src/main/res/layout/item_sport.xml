@@ -1,56 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-
 <layout>
     <data>
         <variable
-            name="sports_item_model"
-            type="com.example.sports_reachmobi.model.Sports_Item_Model" />
+            name="position"
+            type="int"/>
         <variable
-            name="mViewModel"
-            type="com.example.sports_reachmobi.viewmodel.HomeViewModel" />
+            name="sports_adapter"
+            type="com.example.sports_reachmobi.view.SportListAdapter" />
     </data>
 
 
-<LinearLayout    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:onClick="@{()->mViewModel.itemClick(sports_item_model)}"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:clickable="true"
-    android:focusable="true"
-    android:background="?attr/selectableItemBackground"
-    >
-
-    <ImageView
-        android:id="@+id/sport_thumb"
+    <LinearLayout    xmlns:android="http://schemas.android.com/apk/res/android"
+        android:onClick="@{(v)->sports_adapter.onItemClick(v,position)}"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:padding="8dp"/>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
         >
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/sport_name"
-        style="@style/Title"
-        android:textStyle="bold"
-        android:text="Sport_Name"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/sport_format"
-        style="@style/SubTitle"
-        android:text="Sport Format"/>
+
+        <ImageView
+            android:id="@+id/sport_thumb"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:padding="8dp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="8dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/sport_name"
+                style="@style/Title"
+                android:textStyle="bold"
+                android:text="Sport_Name"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/sport_format"
+                style="@style/SubTitle"
+                android:text="Sport Format"/>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
 
 </layout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--
+    <?xml version="1.0" encoding="utf-8"?>
+
+
+
+    <layout>
+        <data>
+            <variable
+                name="sports_item_model"
+                type="com.example.sports_reachmobi.model.Sports_Item_Model" />
+            <variable
+                name="mViewModel"
+                type="com.example.sports_reachmobi.viewmodel.HomeViewModel" />
+        </data>
+
+
+    <LinearLayout    xmlns:android="http://schemas.android.com/apk/res/android"
+        android:onClick="@{()->mViewModel.itemClick(sports_item_model)}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
+        >
+
+        <ImageView
+            android:id="@+id/sport_thumb"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:padding="8dp"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="8dp"
+            >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sport_name"
+            style="@style/Title"
+            android:textStyle="bold"
+            android:text="Sport_Name"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sport_format"
+            style="@style/SubTitle"
+            android:text="Sport Format"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    </layout>
+
+    -->
+
+
+
 
